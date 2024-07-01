@@ -17,6 +17,8 @@ import ColorSelectorNode from './ColorSelectorNode';
 
 import './index.css';
 
+//https://reactflow.dev/examples/nodes/custom-node
+
 const initBgColor = '#1A192B';
 
 const connectionLineStyle = { stroke: '#fff' };
@@ -101,6 +103,7 @@ const LayoutFlow = forwardRef(({layout, code}, ref) => {
   }, [layout, onLayout]);
 
   return (
+    <div ref={ref} style={{ width: "100%", height: "100%" }}>
     <ReactFlow
       nodes={nodes}
       edges={edges}
@@ -119,16 +122,20 @@ const LayoutFlow = forwardRef(({layout, code}, ref) => {
       <MiniMap
         nodeStrokeColor={(n) => {
           if (n.type === 'input') return '#0041d0';
-          if (n.type === 'selectorNode') return bgColor;
+          //if (n.type === 'selectorNode') return bgColor;
           if (n.type === 'output') return '#ff0072';
+          return '#fff'
         }}
         nodeColor={(n) => {
-          if (n.type === 'selectorNode') return bgColor;
+          //if (n.type === 'selectorNode') return bgColor;
           return '#fff';
         }}
       />
-      <Controls />
-    </ReactFlow>
+      <Controls /> 
+      <Background color="#011627" variant="dots" gap={16} size={0.5} />
+
+     </ReactFlow>
+    </div>
   );
 })
 
